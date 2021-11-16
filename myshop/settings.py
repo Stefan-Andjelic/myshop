@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
+    'payment.apps.PaymentConfig',
 ]
 
 MIDDLEWARE = [
@@ -139,3 +140,17 @@ CART_SESSION_ID = 'cart'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+
+# Braintree settings
+BRAINTREE_MERCHANT_ID = 'x836qbm9jdw9bjtm'  # Merchant ID
+BRAINTREE_PUBLIC_KEY = 'fg8hp2rbh37mnc3g'   # Public Key
+BRAINTREE_PRIVATE_KEY = 'b9a024acef3c97bf93367a9aa3102361'  # Private key
+
+import braintree
+
+BRAINTREE_CONF = braintree.Configuration(
+    braintree.Environment.Sandbox,
+    BRAINTREE_MERCHANT_ID,
+    BRAINTREE_PUBLIC_KEY,
+    BRAINTREE_PRIVATE_KEY
+)
